@@ -1,1 +1,2 @@
-# BestFriendsCypressAutomation
+# BestFriendsCypressAutomation 
+Pet project
