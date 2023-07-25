@@ -25,7 +25,7 @@
 // Cypress.Commands.overwrite('visit', (originalFn, url, options) => { ... })
 
 Cypress.Commands.add('getCredentials', () => { 
-    cy.fixture('config').then(function(config) { 
+    cy.fixture('userData').then(function(config) { 
        return { 
          username: config.username, 
          password: config.password, 

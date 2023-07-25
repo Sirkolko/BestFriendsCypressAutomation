@@ -1,30 +1,30 @@
+import LoginPage from '../support/page_objects/loginPage'
+import BasePage from '../support/page_objects/basePage'
+
 
 describe('User Sign-Up and Login', () => {
 
+  let loginPage
   let userData;
+  let basePage
 
   beforeEach(function (){
-    cy.fixture("userData").then((data) => {
-      userData = data
-  })
+   
+  basePage = new BasePage()
+  loginPage= new LoginPage()
+  basePage.open('http://opencart.qatestlab.net/index.php?route=account/login').logoIsDisplayed('Account Login')
   })
   
   
-  it('should redirect unauthenticated user to signin page', () => {
-    cy.visit('/')
-    cy.title().should('equal', 'Best Friends')
-    cy.get('[style="float: right"] > a').click()
-    cy.location("href").should("equal", "http://opencart.qatestlab.net/index.php?route=account/login");
-    
+  it('login fields are displayed', () => {
+    loginPage.mailInputIsDisplayed()
+    loginPage.passwordInputIsDisplayed()
   })
+  
 
-  it('should login user with valid data', () => {
-    cy.visit('/')
-    cy.title().should('equal', 'Best Friends')
-    cy.get('[style="float: right"] > a').click()
-    cy.location("href").should("equal", "http://opencart.qatestlab.net/index.php?route=account/login");
-    cy.get('#input-email').type(userData.emailAdress)
-    cy.get('#input-password').type(userData.password)
-    cy.get('.validate > .btn').click()
+  it('login with valid credentials', ()=> {
+    cy.getCredentials().then((credentials) => {
+      loginPage.loginWithValidCredentials(credentials.email,credentials.password)
+    })
   })
 })
