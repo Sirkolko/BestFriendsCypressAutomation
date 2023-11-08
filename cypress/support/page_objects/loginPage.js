@@ -1,5 +1,7 @@
 import BasePage from "./basePage";
 
+
+
 class LoginPage extends BasePage{
 
 
@@ -16,12 +18,12 @@ class LoginPage extends BasePage{
     get invalidMailError(){
         return cy.get('#input-email-error')
     }
-    get invalidCredentials(){
+    get invalidCredentialsError(){
         return cy.get('.alert.alert-danger.alert-dismissible')
     }
 
-    writeMail(mail){
-        this.mailInput.type(mail)
+    writeEmail(email){
+        this.mailInput.type(email)
         return this
     }
 
@@ -35,12 +37,26 @@ class LoginPage extends BasePage{
         return this
     }
 
-    loginWithValidCredentials(mail,password){
-        this.writeMail
-        this.writePassword
-        this.clickOnTheLoginButton
+    writeInvalidEmail(email){
+        this.mailInput.type(email)
         return this
     }
+
+    writeInvalidPassword(password){
+        this.passwordInput.type(password)
+        return this
+    }
+
+    loginWithCredentials(email, password){
+        this.writeEmail(email)
+        this.writePassword(password)
+        this.clickOnTheLoginButton()
+        return this
+    }
+
+
+
+
 
     mailInputIsDisplayed(){
         this.mailInput.should('be.visible')
@@ -52,7 +68,7 @@ class LoginPage extends BasePage{
         this.invalidMailError.should('be.visible').should('have.text', 'Please enter a valid email address.')
     }
     invalidCredentialsErrorIsDisplayed(){
-        this.invalidCredentials.should('have.text', 'Warning: No match for E-Mail Address and/or Password.');
+        this.invalidCredentialsError.should('have.text', 'Warning: No match for E-Mail Address and/or Password.');
     }
 }
 export default LoginPage

@@ -1,7 +1,10 @@
 {
-    "firstName":    "Andrey",
-    "secondName":   "12345",
+    "password":     "testPassword",
+    "invalid_password": "1111",
     "email":  "testmail2@gmail.com",
+    "invalid_email": "invalidTest@gmail.com",
     "phone_number":    "380123456789",
-    "password":     "testPassword"
+    "invalid_phone_number": "1111",
+    "firstName":    "Andrey",
+    "secondName":   "12345"
 }
