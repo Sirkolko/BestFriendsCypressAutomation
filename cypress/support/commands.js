@@ -25,16 +25,14 @@
 // Cypress.Commands.overwrite('visit', (originalFn, url, options) => { ... })
 
 Cypress.Commands.add('getCredentials', () => { 
-    cy.fixture('config').then(function(config) { 
-       return { 
-         username: config.username, 
-         password: config.password, 
-         unvalid_username: config.unvalid_username, 
-         unvalid_password: config.unvalid_password, 
+    return cy.fixture('config').then(function(config) {
+       return {
+         password: config.password,
+         invalid_password: config.invalid_password,
          email: config.email, 
-         unvalid_email: config.unvalid_email, 
+         invalid_email: config.invalid_email,
          phone_number: config.phone_number, 
-         unvalid_phone_number: config.unvalid_phone_number 
+         invalid_phone_number: config.invalid_phone_number
        }; 
      });
     }) 
